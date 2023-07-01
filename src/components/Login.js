@@ -32,7 +32,7 @@ function Login(props) {
       <section className="register">
         <div className="register__container">
           <h2 className="register__title">Вход</h2>
-          <form className="register__form" name="formAuth" onSubmit={handleSubmit} noValidate>
+          <form className="register__form" name="formAuth" onSubmit={handleSubmit}>
             <input
               type="email"
               name="registerInputEmail"

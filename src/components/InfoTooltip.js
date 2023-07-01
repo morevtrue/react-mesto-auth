@@ -12,10 +12,10 @@ function InfoTooltip(props) {
         <img src={
           props.isError ? imageError
             : imageAccept
-        } alt="удачная не очень или нрегистрация" className="popup__image-accept" />
+        } alt="удачная или не очень регистрация" className="popup__image-accept" />
         <h2 className="popup__accept-title">{
-          props.isError ? 'Что-то пошло не так! Попробуйте ещё раз.'
-            : 'Вы успешно зарегистрировались!'
+          props.isError ? props.textError
+            : props.textAccept
         }</h2>
       </div>
     </section>

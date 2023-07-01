@@ -12,7 +12,7 @@ import Login from './Login.js';
 import Register from './Register.js';
 import InfoTooltip from './InfoTooltip.js';
 import ProtectedRoute from './ProtectedRoute';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate, Navigate } from 'react-router-dom';
 
 function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
@@ -32,17 +32,22 @@ function App() {
   const [isErrorRegister, setIsErrorRegister] = React.useState(false);
   const [headerEmail, setHeaderEmail] = React.useState('');
 
+  const textAccept = 'Вы успешно зарегистрировались!';
+  const textError = 'Что-то пошло не так! Попробуйте ещё раз.';
 
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    Promise.all([api.getInitialCards(), api.getProfileContent()])
-      .then(([cards, info]) => {
-        setCards(cards);
-        setCurrentUser(info);
-      })
-      .catch(err => console.log(err));
-  }, []);
+    if (isLoggedIn) {
+      Promise.all([api.getInitialCards(), api.getProfileContent()])
+        .then(([cards, info]) => {
+          setCards(cards);
+          setCurrentUser(info);
+          console.log('tik')
+        })
+        .catch(err => console.log(err));
+    }
+  }, [isLoggedIn]);
 
   React.useEffect(() => {
     tokenCheck();
@@ -233,6 +238,14 @@ function App() {
               />
             }
           />
+          <Route
+            path="*"
+            element={
+              isLoggedIn
+                ? <Navigate to="/" replace />
+                : <Navigate to="/sign-in" replace />
+            }
+          />
         </Routes>
         <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
@@ -263,6 +276,8 @@ function App() {
           isOpen={isInfoTooltipPopupOpen}
           onClose={closeAllPopups}
           isError={isErrorRegister}
+          textAccept={textAccept}
+          textError={textError}
         />
       </div>
     </CurrentUserContext.Provider>

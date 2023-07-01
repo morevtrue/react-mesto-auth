@@ -1,0 +1,22 @@
+.header__nav-button {
+  display: none;
+  opacity: 1;
+  transition: opacity .5s linear;
+  cursor: pointer;
+}
+
+@media (max-width: 491px) {
+  .header__nav-button {
+    display: block;
+    background: url(../../../images/burger-menu.svg) no-repeat center/cover;
+    border: none;
+    width: 24px;
+    height: 22px;
+    margin-right: 20px;
+    padding: 0;
+  }
+}
+
+.header__nav-button:hover {
+  opacity: .6;
+}

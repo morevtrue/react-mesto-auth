@@ -1,0 +1,5 @@
+@media (max-width: 491px) {
+  .header__content_type_main-page {
+    display: none;
+  }
+}

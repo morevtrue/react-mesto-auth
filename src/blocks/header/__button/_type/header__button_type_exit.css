@@ -1,0 +1,18 @@
+.header__button_type_exit {
+  color: rgba(169, 169, 169, 1);
+  transition: color .5s linear;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  margin-right: 27px;
+}
+
+.header__button_type_exit:hover {
+  color: rgba(169, 169, 169, .7);
+}
+
+@media (max-width: 491px) {
+  .header__button_type_exit {
+    margin: 0 auto 40px;
+  }
+}

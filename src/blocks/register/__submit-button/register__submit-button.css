@@ -1,0 +1,28 @@
+.register__submit-button {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.78px;
+  color: rgba(0, 0, 0, 1);
+  background-color: rgba(255, 255, 255, 1);
+  transition: background-color .5s linear;
+  min-height: 50px;
+  border: none;
+  border-radius: 2px;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 15px;
+}
+
+.register__submit-button:hover {
+  background-color: rgba(255, 255, 255, .85);
+  cursor: pointer;
+}
+
+@media (max-width: 491px) {
+  .register__submit-button {
+    min-height: 46px;
+    font-size: 16px;
+    line-height: 19.36px;
+    margin-bottom: 20px;
+  }
+}

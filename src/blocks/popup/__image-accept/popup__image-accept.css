@@ -1,0 +1,7 @@
+.popup__image-accept {
+  width: 100%;
+  max-width: 120px;
+  min-height: 120px;
+  margin: 60px auto 0;
+  padding: 0;
+}

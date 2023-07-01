@@ -1,0 +1,13 @@
+@media (max-width: 767px) {
+  .header__button_type_auth {
+    margin-right: 30px;
+  }
+}
+
+@media (max-width: 491px) {
+  .header__button_type_auth {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.94px;
+  }
+}

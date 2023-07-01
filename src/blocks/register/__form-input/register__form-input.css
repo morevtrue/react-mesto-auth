@@ -1,0 +1,27 @@
+.register__form-input {
+  border: none;
+  border-bottom: 2px solid rgba(204, 204, 204, 1);
+  background-color: rgba(0, 0, 0, 1);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16.94px;
+  color: rgba(255, 255, 255, 1);
+  min-height: 30px;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 30px;
+}
+
+.register__form-input:focus {
+  outline: none;
+}
+
+.register__form-input:last-of-type {
+  margin-bottom: 216px;
+}
+
+@media (max-width: 491px) {
+  .register__form-input:last-of-type {
+    margin-bottom: 173px;
+  }
+}

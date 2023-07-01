@@ -1,0 +1,10 @@
+.popup__accept-title {
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 29.05px;
+  margin: 32px auto 60px;
+  padding: 0;
+  width: 100%;
+  max-width: 358px;
+  text-align: center;
+}

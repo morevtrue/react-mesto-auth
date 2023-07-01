@@ -1,0 +1,11 @@
+.header__content {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+
+  gap: 24px;
+  font-size: 18px;
+  line-height: 22px;
+  margin: 0;
+  padding: 0;
+}

@@ -42,5 +42,5 @@
   "devDependencies": {
     "gh-pages": "^5.0.0"
   },
-  "homepage": "https://morevtrue.github.io/mesto-react-auth"
+  "homepage": "https://morevtrue.github.io/react-mesto-auth"
 }

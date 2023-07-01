@@ -6,7 +6,7 @@
 
 **Ссылка на проект**
 
-* [Github](https://morevtrue.github.io/mesto-react-auth/)
+* [Github](https://morevtrue.github.io/react-mesto-auth/)
 
 **Описание**
 

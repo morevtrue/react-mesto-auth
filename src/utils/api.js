@@ -16,6 +16,7 @@ export default class Api {
 
   getInitialCards() {
     return fetch(this._baseUrl + 'cards', {
+      credentials: 'include',
       headers: {
         authorization: this._token
       }
@@ -25,6 +26,7 @@ export default class Api {
   addNewCard({ name, link }) {
     return fetch(this._baseUrl + 'cards', {
       method: 'POST',
+      credentials: 'include',
       headers: {
         authorization: this._token,
         'Content-Type': this._contentType
@@ -38,6 +40,7 @@ export default class Api {
 
   getProfileContent() {
     return fetch(this._baseUrl + 'users/me', {
+      credentials: 'include',
       headers: {
         authorization: this._token
       }
@@ -47,6 +50,7 @@ export default class Api {
   submitProfileData({ name, about }) {
     return fetch(this._baseUrl + 'users/me', {
       method: 'PATCH',
+      credentials: 'include',
       headers: {
         authorization: this._token,
         'Content-Type': this._contentType
@@ -61,6 +65,7 @@ export default class Api {
   deleteCard(cardId) {
     return fetch(this._baseUrl + `cards/${cardId}`, {
       method: 'DELETE',
+      credentials: 'include',
       headers: this._headers
     }).then(res => this._getCheck(res));
   }
@@ -68,6 +73,7 @@ export default class Api {
   changeLikeCardStatus(cardId, isLiked) {
     return fetch(this._baseUrl + `cards/${cardId}/likes`, {
       method: `${!isLiked ? 'DELETE' : 'PUT'}`,
+      credentials: 'include',
       headers: this._headers
     }).then(res => this._getCheck(res));
   }
@@ -75,6 +81,7 @@ export default class Api {
   submitEditAvatar({ avatar }) {
     return fetch(this._baseUrl + 'users/me/avatar', {
       method: 'PATCH',
+      credentials: 'include',
       headers: {
         authorization: this._token,
         'Content-Type': this._contentType
@@ -88,7 +95,7 @@ export default class Api {
 }
 
 export const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-65/',
+  baseUrl: 'http://localhost:4000/',
   headers: {
     authorization: '3f6b2ef5-b9e5-4ebd-9f38-797a06c223a7',
     'Content-Type': 'application/json'

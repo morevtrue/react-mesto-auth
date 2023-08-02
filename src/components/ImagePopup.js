@@ -1,6 +1,12 @@
 function ImagePopup(props) {
+  const closePopupOverlay = (evt) => {
+    if (evt.target === evt.currentTarget) {
+      props.onClose(evt);
+    }
+  }
+
   return (
-    <section className={`popup popup_open_image ${props.card.isOpen ? 'popup_opened' : 'no-open'}`}>
+    <section className={`popup popup_open_image ${props.card.isOpen ? 'popup_opened' : 'no-open'}`} onClick={closePopupOverlay}>
       <div className="popup__content-image">
         <button className="popup__close-button" type="button" onClick={props.onClose}></button>
         <figure className="popup__image-figure">

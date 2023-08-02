@@ -1,6 +1,13 @@
 function PopupWithForm(props) {
+
+  const closePopupOverlay = (evt) => {
+    if (evt.target === evt.currentTarget) {
+      props.onClose();
+    }
+  }
+
   return (
-    <section className={`popup popup_${props.name} ${props.isOpen}`}>
+    <section className={`popup popup_${props.name} ${props.isOpen}`} onClick={closePopupOverlay}>
       <div
         className={`popup__container ${(props.name === 'change_avatar' && 'popup__container_type_avatar') ||
           (props.name === 'delete_confirm' ? 'popup__container_type_confirm' : '')

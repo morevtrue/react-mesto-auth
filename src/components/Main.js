@@ -1,14 +1,12 @@
 import React from 'react';
 import Card from './Card.js';
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
-import { useNavigate } from 'react-router-dom';
 import Header from './Header.js';
 import Footer from './Footer.js';
 
 function Main(props) {
   const currentUser = React.useContext(CurrentUserContext);
   const [isClickOnButton, setIsClickOnButton] = React.useState(false);
-  const navigate = useNavigate();
 
   function handleMenuOpenClick() {
     setIsClickOnButton(true);
@@ -19,8 +17,7 @@ function Main(props) {
   }
 
   function signOut() {
-    localStorage.removeItem('jwt');
-    navigate('/sign-in');
+    props.onLogoutProfile();
   }
 
   return (

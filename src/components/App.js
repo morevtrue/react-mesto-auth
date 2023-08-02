@@ -43,7 +43,6 @@ function App() {
         .then(([cards, info]) => {
           setCards(cards);
           setCurrentUser(info);
-          console.log('tik')
         })
         .catch(err => console.log(err));
     }
@@ -51,21 +50,43 @@ function App() {
 
   React.useEffect(() => {
     tokenCheck();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const tokenCheck = () => {
-    if (localStorage.getItem('jwt')) {
-      const jwt = localStorage.getItem('jwt');
-      apiAuth
-        .checkToken(jwt)
-        .then((res) => {
+    // if (localStorage.getItem('jwt')) {
+    // const jwt = localStorage.getItem('jwt');
+    apiAuth
+      .checkToken()
+      .then((res) => {
+        if (res) {
           setIsLoggedIn(true);
           navigate("/", { replace: true });
-          setHeaderEmail(res.data.email);
-        })
-        .catch((err) => console.log(err));
-    }
+          setHeaderEmail(res.email);
+        } else {
+          setIsLoggedIn(false)
+        }
+
+      })
+      .catch((err) => {
+        setIsLoggedIn(false);
+        console.log(err)
+      });
+    // }
   };
+
+  const handleClearCookie = () => {
+    apiAuth
+      .clearCookie()
+      .then((res) => {
+        setIsLoggedIn(false);
+        navigate('/sign-in');
+        setHeaderEmail('');
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -96,7 +117,9 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => {
+      return i === currentUser._id;
+    });
     api
       .changeLikeCardStatus(card._id, !isLiked)
       .then(newCard => {
@@ -180,7 +203,6 @@ function App() {
     apiAuth
       .authorization(password, email)
       .then((res) => {
-        localStorage.setItem('jwt', res.token);
         setIsLoggedIn(true);
         navigate("/", { replace: true });
         setHeaderEmail(email);
@@ -191,19 +213,28 @@ function App() {
       })
   }
 
+  const closePopupEsc = (evt) => {
+    if (evt.keyCode === 27) {
+      closeAllPopups(evt);
+    }
+  }
+
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
-    setSelectedCard({});
+    setSelectedCard({
+      name: '',
+      link: '',
+      isOpen: false
+    });
     setIsDeleteCardPopup(false);
     setIsInfoTooltipPopupOpen(false);
   }
 
-
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <div className="page">
+      <div className="page" onKeyDown={closePopupEsc}>
         <Routes>
           <Route
             path="/sign-up"
@@ -227,6 +258,7 @@ function App() {
               <ProtectedRoute
                 element={Main}
                 loggedIn={isLoggedIn}
+                onLogoutProfile={handleClearCookie}
                 onEditAvatar={handleEditAvatarClick}
                 onEditProfile={handleEditProfileClick}
                 onAddPlace={handleAddPlaceClick}

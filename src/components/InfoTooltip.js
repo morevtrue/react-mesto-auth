@@ -6,7 +6,7 @@ function InfoTooltip(props) {
     <section className={
       props.isOpen ? `popup popup_open_info popup_opened`
         : `popup popup_open_info`
-    }>
+    } onClick={props.onClose}>
       <div className="popup__container">
         <button className="popup__close-button" type="button" onClick={props.onClose}></button>
         <img src={

@@ -59,4 +59,4 @@ export default class ApiAuth {
 
 }
 
-export const apiAuth = new ApiAuth('http://localhost:4000');
+export const apiAuth = new ApiAuth('http://localhost:3000');

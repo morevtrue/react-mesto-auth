@@ -15,7 +15,7 @@
   <img src="https://github.com/devicons/devicon/blob/master/icons/git/git-original-wordmark.svg" title="Git" alt="Git" width="40" height="40"/>&nbsp;
 </div>
 
-**Ссылка на проект в GitHub Pages**
+## Ссылка на проект в GitHub Pages**
 
 https://morevtrue.github.io/react-mesto-auth/
 

@@ -6,7 +6,7 @@
 
 Функционал: регистрация и авторизация пользователей, редактирование профиля пользователя, добавление и удаление карточек, постановка и снятие лайка карточкам, загрузка галереи карточек с сервера, отправка запросов на сервер.
 
-## Используемый стек технологий: 
+## Используемый стек технологий 
 <div>
   <img src="https://github.com/devicons/devicon/blob/master/icons/react/react-original-wordmark.svg" title="React" alt="React" width="40" height="40"/>&nbsp;
   <img src="https://github.com/devicons/devicon/blob/master/icons/css3/css3-plain-wordmark.svg"  title="CSS3" alt="CSS" width="40" height="40"/>&nbsp;

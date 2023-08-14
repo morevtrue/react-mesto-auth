@@ -21,7 +21,6 @@ export default class ApiAuth {
         password,
         email,
       }),
-      credentials: 'include',
     }).then(res => this._getCheck(res));
   }
 
@@ -35,7 +34,6 @@ export default class ApiAuth {
         password,
         email,
       }),
-      credentials: 'include',
     }).then(res => this._getCheck(res));
   }
 

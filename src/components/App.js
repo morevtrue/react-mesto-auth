@@ -54,38 +54,19 @@ function App() {
   }, []);
 
   const tokenCheck = () => {
-    // if (localStorage.getItem('jwt')) {
-    // const jwt = localStorage.getItem('jwt');
-    apiAuth
-      .checkToken()
-      .then((res) => {
-        if (res) {
-          setIsLoggedIn(true);
-          navigate("/", { replace: true });
-          setHeaderEmail(res.email);
-        } else {
-          setIsLoggedIn(false)
-        }
-
-      })
-      .catch((err) => {
-        setIsLoggedIn(false);
-        console.log(err)
-      });
-    // }
-  };
-
-  const handleClearCookie = () => {
-    apiAuth
-      .clearCookie()
-      .then((res) => {
-        setIsLoggedIn(false);
-        navigate('/sign-in');
-        setHeaderEmail('');
-      })
-      .catch((err) => {
-        console.log(err);
-      })
+    if (localStorage.getItem('jwt')) {
+      const jwt = localStorage.getItem('jwt');
+      apiAuth
+        .checkToken(jwt)
+        .then((res) => {
+          if (res) {
+            setIsLoggedIn(true);
+            navigate("/", { replace: true });
+            setHeaderEmail(res.data.email);
+          }
+        })
+        .catch((err) => console.log(err));
+    }
   }
 
   function handleEditAvatarClick() {
@@ -117,9 +98,7 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => {
-      return i === currentUser._id;
-    });
+    const isLiked = card.likes.some(i => i._id === currentUser._id);
     api
       .changeLikeCardStatus(card._id, !isLiked)
       .then(newCard => {
@@ -203,6 +182,7 @@ function App() {
     apiAuth
       .authorization(password, email)
       .then((res) => {
+        localStorage.setItem('jwt', res.token);
         setIsLoggedIn(true);
         navigate("/", { replace: true });
         setHeaderEmail(email);
@@ -223,11 +203,7 @@ function App() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
-    setSelectedCard({
-      name: '',
-      link: '',
-      isOpen: false
-    });
+    setSelectedCard({});
     setIsDeleteCardPopup(false);
     setIsInfoTooltipPopupOpen(false);
   }
@@ -258,7 +234,6 @@ function App() {
               <ProtectedRoute
                 element={Main}
                 loggedIn={isLoggedIn}
-                onLogoutProfile={handleClearCookie}
                 onEditAvatar={handleEditAvatarClick}
                 onEditProfile={handleEditProfileClick}
                 onAddPlace={handleAddPlaceClick}
